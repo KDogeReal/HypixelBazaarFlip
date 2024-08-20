@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Manual Homepage</title>
+    <script src="hypixelAPIScript.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #e9ecef;
+        }
+        nav a {
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            color: #007bff;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #e9ecef;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the API Manual</h1>
+    </header>
+    <nav>
+        <a href="#overview">Overview</a>
+        <a href="#documentation">Documentation</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+        <section id="overview">
+            <h2>API Overview</h2>
+            <p>Welcome to the API manual homepage. Here you can find all the necessary information about our API, including how to use it and where to find the documentation.</p>
+        </section>
+        <section>
+            <button onclick="fetchBazaarData()">Check API?</button>
+            <h1>Top 5 bazaar flipping items!!! ----</h1>
+            <p id="raw"></p>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>
