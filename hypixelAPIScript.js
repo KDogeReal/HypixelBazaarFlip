@@ -9,7 +9,7 @@ async function fetchBazaarData() {
     try {
         // Make the GET request
         const response = await fetch(apiUrl);
-        var flipListOrdered = [];
+        
         
         
         // Check if the request was successful
@@ -18,23 +18,8 @@ async function fetchBazaarData() {
         }
 
         // Parse the JSON response
-        const data = await response.json();
-        Object.keys(data.products).forEach(keys => {
-            const item = data.products[keys];
-            const profit = item.quick_status.buyPrice - item.quick_status.sellPrice;
-            if (item.quick_status.sellPrice < 10000000 && profit < 20000000 && item.quick_status.buyMovingWeek > 30 && item.quick_status.sellMovingWeek > 30) {
-                flipListOrdered.push({key: profit, id:item.product_id});
-            }
-        });
-        flipListOrdered.sort((a, b) => b.key - a.key);
-
-        // Log the data to the console (or handle it as needed)
-        console.log('Bazaar Data: ', data);
-        console.log(flipListOrdered);
-        raw.innerHTML = 'Bazaar Data: <br>';
-        for (let i = 0; i < 20; i++) {
-            raw.innerHTML += '#' + (i+1) + ': id = ' + flipListOrdered[i].id + '   profit = ' + flipListOrdered[i].key + '<br>';
-        }
+        return await response.json();
+       
          
 
         // Example of accessing specific data
@@ -43,6 +28,51 @@ async function fetchBazaarData() {
     } catch (error) {
         // Handle any errors that occurred during the fetch
         console.error('Error fetching Bazaar data:', error);
+    }
+}
+function checkAPI() {
+    console.log('Bazaar Data: ', fetchBazaarData());
+}
+
+function bazaarFlipper() {
+    const data = fetchBazaarData();
+    var flipListOrdered = [];
+    Object.keys(data.products).forEach(keys => {
+        const item = data.products[keys];
+        const profit = item.quick_status.buyPrice - item.quick_status.sellPrice;
+        if (item.quick_status.sellPrice < 10000000 && profit < 20000000 && item.quick_status.buyMovingWeek > 30 && item.quick_status.sellMovingWeek > 30) {
+            flipListOrdered.push({key: profit, id:item.product_id});
+        }
+    });
+    flipListOrdered.sort((a, b) => b.key - a.key);
+
+    // Log the data to the console (or handle it as needed)
+    console.log('Bazaar Data: ', data);
+    console.log(flipListOrdered);
+    raw.innerHTML = 'Bazaar Data: <br>';
+    for (let i = 0; i < 20; i++) {
+        raw.innerHTML += '#' + (i+1) + ': id = ' + flipListOrdered[i].id + '   profit = ' + flipListOrdered[i].key + '<br>';
+    }
+}
+
+function gemstoneFlipper() {
+    const data = fetchBazaarData();
+    var flipListOrdered = [];
+
+    Object.keys(data.products).forEach(keys => {
+        const item = data.products[keys];
+        const profit = item.quick_status.buyPrice - item.quick_status.sellPrice;
+        if (item.quick_status.sellPrice < 10000000 && profit < 20000000 && item.quick_status.buyMovingWeek > 30 && item.quick_status.sellMovingWeek > 30) {
+            flipListOrdered.push({key: profit, id:item.product_id});
+        }
+    });
+    flipListOrdered.sort((a, b) => b.key - a.key);
+
+    console.log('Bazaar Data: ', data);
+    console.log(flipListOrdered);
+    raw2.innerHTML = 'Bazaar Data: <br>';
+    for (let i = 0; i < 20; i++) {
+        raw2.innerHTML += '#' + (i+1) + ': id = ' + flipListOrdered[i].id + '   profit = ' + flipListOrdered[i].key + '<br>';
     }
 }
 
